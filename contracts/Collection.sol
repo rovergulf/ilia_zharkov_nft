@@ -46,7 +46,7 @@ contract IliaZharkovCollection is ERC721URIStorage, AccessControl, Ownable {
     function mint(
         string memory tokenUri
     ) public {
-        require(hasRole(MINTER_ROLE, _msgSender()), "ERC721Collection: must have minter role to mint");
+        require(hasRole(MINTER_ROLE, _msgSender()), "Must have minter role to mint");
 
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
@@ -59,7 +59,7 @@ contract IliaZharkovCollection is ERC721URIStorage, AccessControl, Ownable {
 
     // let owners to burn their tokens
     function burn(uint256 tokenId) public {
-        require(_msgSender() == ownerOf(tokenId), "ERC721Collection: Cannot be burned only by token owner");
+        require(_msgSender() == ownerOf(tokenId), "Can be burned only by token owner");
         _burn(tokenId);
     }
 

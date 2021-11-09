@@ -15,6 +15,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     }
 });
 
+const {
+    MAINNET_API_URL, ROPSTEN_API_URL, RINKEBY_API_URL, PRIVATE_KEY, ETHERSCAN_API_KEY
+} = process.env;
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -30,15 +34,21 @@ module.exports = {
     },
     defaultNetwork: 'rinkeby',
     networks: {
+        mainnet: {
+            url: MAINNET_API_URL,
+            accounts: [`0x${PRIVATE_KEY}`]
+        },
         ropsten: {
-            url: process.env.ROPSTEN_API_URL || "",
-            accounts:
-                process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+            url: ROPSTEN_API_URL || "",
+            accounts: [`0x${PRIVATE_KEY}`]
         },
         rinkeby: {
-            url: process.env.RINKEBY_API_URL || "",
-            accounts:
-                process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+            url: RINKEBY_API_URL || "",
+            accounts: [`0x${PRIVATE_KEY}`]
+        },
+        localhost: {
+            url: 'http://localhost:7545',
+            accounts: [`0x${PRIVATE_KEY}`]
         },
     },
     gasReporter: {
@@ -46,7 +56,7 @@ module.exports = {
         currency: "USD",
     },
     etherscan: {
-        apiKey: process.env.ETHERSCAN_API_KEY,
+        apiKey: ETHERSCAN_API_KEY,
     },
     paths: {
         sources: "./contracts",
