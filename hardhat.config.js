@@ -15,17 +15,28 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     }
 });
 
-// You need to export an object to set up your config
-// Go to https://hardhat.org/config/ to learn more
-
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-    solidity: "0.8.4",
+    solidity: {
+        version: "0.8.9",
+        settings: {
+            optimizer: {
+                enabled: true,
+                runs: 200
+            }
+        }
+    },
+    defaultNetwork: 'rinkeby',
     networks: {
         ropsten: {
-            url: process.env.ROPSTEN_URL || "",
+            url: process.env.ROPSTEN_API_URL || "",
+            accounts:
+                process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+        },
+        rinkeby: {
+            url: process.env.RINKEBY_API_URL || "",
             accounts:
                 process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
         },
@@ -36,5 +47,11 @@ module.exports = {
     },
     etherscan: {
         apiKey: process.env.ETHERSCAN_API_KEY,
+    },
+    paths: {
+        sources: "./contracts",
+        tests: "./test",
+        cache: "./cache",
+        artifacts: "./artifacts"
     },
 };
