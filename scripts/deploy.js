@@ -4,8 +4,8 @@ async function main() {
 
   const factory = await hre.ethers.getContractFactory("IliaZharkovCollection");
   const contract = await factory.deploy(
-      'https://api.rovergulf.net/nft/metadata/zharkov4',
-      'https://api.rovergulf.net/nft/metadata/zharkov4/',
+      'https://api.rovergulf.net/nft/metadata/zharkov',
+      'https://api.rovergulf.net/nft/metadata/zharkov/',
   );
 
   await contract.deployed();
