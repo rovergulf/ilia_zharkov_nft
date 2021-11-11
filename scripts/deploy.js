@@ -3,7 +3,10 @@ const hre = require("hardhat");
 async function main() {
 
   const factory = await hre.ethers.getContractFactory("IliaZharkovCollection");
-  const contract = await factory.deploy('https://api.rovergulf.net/nft/contracts/zharkov');
+  const contract = await factory.deploy(
+      'https://api.rovergulf.net/nft/metadata/zharkov4',
+      'https://api.rovergulf.net/nft/metadata/zharkov4/',
+  );
 
   await contract.deployed();
 

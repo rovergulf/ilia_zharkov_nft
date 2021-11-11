@@ -1,10 +1,21 @@
 {
-  "name": "hardhat-project",
+  "name": "ilia-zharkov-nft",
+  "maintainers": [
+    {
+      "email":  "d@rovergulf.net",
+      "name": "Dmitrii Limonov"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/rovergulf/ilia_zharkov_nft"
+  },
+  "version": "0.1.0",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^2.1.7",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@openzeppelin/contracts": "^4.3.2",
+    "chai": "^4.3.4",
     "dotenv": "^10.0.0",
     "eslint": "^7.32.0",
     "ethers": "^5.5.1",

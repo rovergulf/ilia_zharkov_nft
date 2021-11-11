@@ -1,4 +1,4 @@
-const {API_KEY, PRIVATE_KEY, CONTRACT_ADDR} = process.env;
+const {API_KEY, PRIVATE_KEY, PUBLIC_KEY, CONTRACT_ADDR} = process.env;
 
 const {ethers} = require('hardhat');
 const contract = require('../artifacts/contracts/Collection.sol/IliaZharkovCollection.json');
@@ -14,10 +14,12 @@ const collection = new ethers.Contract(CONTRACT_ADDR, contract.abi, signer);
 async function main() {
     console.log('Minting a new token...');
 
-    const tx = await collection.mint('https://api.rovergulf.net/nft/metadata/zharkov/1');
+    const tx = await collection.mint(PUBLIC_KEY);
     await tx.wait();
 
-    console.log(`Successfully minted token. Tx: ${tx.hash}`);
+    const tokenId = await collection.currentTokenId();
+
+    console.log(`Successfully minted token with id: ${tokenId}. Tx: ${tx.hash}`);
 }
 
 main()

@@ -16,7 +16,7 @@ async function main() {
     console.log('Current Contract URI:', currentUrl);
 
     console.log('Setting new url...');
-    const newUri = `http://api.rovergulf.net/nft/metadata/zharkov/1`;
+    const newUri = `https://api.rovergulf.net/nft/metadata/zharkov`;
     const tx = await collection.updateContractURI(newUri);
     await tx.wait();
 

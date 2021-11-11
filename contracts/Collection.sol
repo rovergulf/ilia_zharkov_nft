@@ -2,13 +2,12 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract IliaZharkovCollection is ERC721URIStorage, AccessControl, Ownable {
+contract IliaZharkovCollection is ERC721Enumerable, AccessControl, Ownable {
 
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
@@ -17,16 +16,19 @@ contract IliaZharkovCollection is ERC721URIStorage, AccessControl, Ownable {
     Counters.Counter private _tokenIds;
 
     string private _contractUri;
+    string private _baseTokenURI;
 
     event Mint(address recipient, uint256 tokenId);
 
     constructor(
-        string memory contractUri_
+        string memory contractUri_,
+        string memory baseUri_
     ) public ERC721("Ilia Zharkov Collection", "IZH") {
         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _setupRole(MINTER_ROLE, _msgSender());
 
         _contractUri = contractUri_;
+        _baseTokenURI = baseUri_;
     }
 
     // returns last minted token id
@@ -42,19 +44,26 @@ contract IliaZharkovCollection is ERC721URIStorage, AccessControl, Ownable {
         _contractUri = contractUri_;
     }
 
+    function _baseURI() internal view virtual override returns (string memory) {
+        return _baseTokenURI;
+    }
+
+    function updateBaseURI(string memory baseUri_) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        _baseTokenURI = baseUri_;
+    }
+
     // public mint
     function mint(
-        string memory tokenUri
+        address recipient
     ) public {
         require(hasRole(MINTER_ROLE, _msgSender()), "Must have minter role to mint");
 
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
 
-        _mint(_msgSender(), newTokenId);
-        _setTokenURI(newTokenId, tokenUri);
+        _mint(recipient, newTokenId);
 
-        emit Mint(_msgSender(), newTokenId);
+        emit Mint(recipient, newTokenId);
     }
 
     // let owners to burn their tokens
@@ -64,9 +73,8 @@ contract IliaZharkovCollection is ERC721URIStorage, AccessControl, Ownable {
     }
 
     // See {IERC165-supportsInterface}.
-    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721, AccessControl) returns (bool) {
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721Enumerable, AccessControl) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
-
 
 }
