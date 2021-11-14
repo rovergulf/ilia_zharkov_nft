@@ -54,16 +54,20 @@ contract IliaZharkovCollection is ERC721Enumerable, AccessControl, Ownable {
 
     // public mint
     function mint(
+        uint256 amount,
         address recipient
     ) public {
+        require(amount >= 16, "Requested amount is more than maximum (16)");
         require(hasRole(MINTER_ROLE, _msgSender()), "Must have minter role to mint");
 
-        _tokenIds.increment();
-        uint256 newTokenId = _tokenIds.current();
+        for (uint256 i = 0; i < amount; i++) {
+            _tokenIds.increment();
+            uint256 newTokenId = _tokenIds.current();
 
-        _mint(recipient, newTokenId);
+            _mint(recipient, newTokenId);
 
-        emit Mint(recipient, newTokenId);
+            emit Mint(recipient, newTokenId);
+        }
     }
 
     // let owners to burn their tokens
