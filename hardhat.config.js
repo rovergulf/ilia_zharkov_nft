@@ -52,7 +52,7 @@ module.exports = {
         },
     },
     gasReporter: {
-        enabled: process.env.REPORT_GAS !== undefined,
+        enabled: !!process.env.REPORT_GAS,
         currency: "USD",
     },
     etherscan: {
@@ -64,4 +64,7 @@ module.exports = {
         cache: "./cache",
         artifacts: "./artifacts"
     },
+    mocha: {
+        timeout: 20000
+    }
 };

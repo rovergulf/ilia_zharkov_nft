@@ -2,7 +2,7 @@
   "name": "ilia-zharkov-nft",
   "maintainers": [
     {
-      "email":  "d@rovergulf.net",
+      "email": "d@rovergulf.net",
       "name": "Dmitrii Limonov"
     }
   ],
@@ -23,5 +23,8 @@
     "hardhat-gas-reporter": "^1.0.4",
     "solhint": "^3.3.6",
     "solidity-coverage": "^0.7.17"
+  },
+  "dependencies": {
+    "discord.js": "^13.3.1"
   }
 }
