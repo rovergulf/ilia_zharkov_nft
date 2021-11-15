@@ -11,11 +11,14 @@ Ethereum Network: [0x4b839681c899d02ee1ceeab0a6edcb7ee2274467](https://etherscan
 ## Links:
 
 ### Marketplaces:
-TBA
+- View on Rarible - https://rarible.com/iliazharkov
+- View on OpenSea - https://opensea.io/collection/ilia-zharkov-artworks
 
 ### About artist:
 Instagram - https://www.instagram.com/zharkowww/  
 Other - https://taplink.cc/heavenly_beauty_tattoo
+
+Some of arts can include original canvases. Contact Engineering team or any social media specified on marketplaces to book a delivery.
 
 ### Engineering team:
 https://rovergulf.net

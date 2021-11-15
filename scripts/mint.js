@@ -4,7 +4,7 @@ const {ethers} = require('hardhat');
 const contract = require('../artifacts/contracts/Collection.sol/IliaZharkovCollection.json');
 
 // Alchemy provider
-const alchemyProvider = new ethers.providers.AlchemyProvider(network = 'rinkeby', RINKEBY_API_KEY);
+const alchemyProvider = new ethers.providers.AlchemyProvider(network = 'rinkeby', API_KEY);
 
 // signer
 const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
