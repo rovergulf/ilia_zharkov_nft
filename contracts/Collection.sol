@@ -57,7 +57,6 @@ contract IliaZharkovCollection is ERC721Enumerable, AccessControl, Ownable {
         uint256 amount,
         address recipient
     ) public {
-        require(amount >= 16, "Requested amount is more than maximum (16)");
         require(hasRole(MINTER_ROLE, _msgSender()), "Must have minter role to mint");
 
         for (uint256 i = 0; i < amount; i++) {

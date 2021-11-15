@@ -5,7 +5,7 @@ This repository contains contract code that is used to deliver his NFT Arts to E
 
 
 ### Contract address:
-Ethereum Network: [0x4b839681c899d02ee1ceeab0a6edcb7ee2274467](https://etherscan.io/address/0x4b839681c899d02ee1ceeab0a6edcb7ee2274467)
+Ethereum Network: [0x4b839681c899d02ee1ceeab0a6edcb7ee2274467](https://etherscan.io/address/0x1928f918E1b186df49Df59Dd95dc35426A0C232d)
 
 
 ## Links:
